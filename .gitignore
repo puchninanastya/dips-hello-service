@@ -1,0 +1,12 @@
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+dips_project/__pycache__/
+local_settings.py
+.travis.yml.swp
+.env
+
+###PyCharm###
+.idea
