@@ -1,0 +1,25 @@
+language: python
+
+jobs:
+  include:
+    - stage: build
+      script: skip
+      python:
+        "3.6"
+      services:
+        postgresql
+      env:
+        DJANGO=1.11.6
+      install:
+        pip install -r requirements.txt
+
+    - stage: unit tests
+      script: python manage.py test dips_app
+
+    - stage: deploy
+      script: skip
+      deploy: &heroku
+      provider: heroku
+      app: puchnina-dips
+      api_key:
+      secure: T8Njon6bp2J3var0EST1NN9l7BiTs+CYZwrKN951QsSJtvatBMWho56ixDZzaTrlIrqYshWcFZ5So6FTbOPG9yDripou/1D2bSF8R1hvnNYi7qOOWOAaKfodjByamaCTsDBWEs80CWO/s463bwR7rm8YW6CwGqQTxd/B/PjWA427dAlITB0urLjXUZz/USC8eivQipizgpRgtWf9YIshm/QrCBEfkZVhzZH8AWS35uFFzqx4VdKyzf3vn54M8Sf5cJPzU6TKA1gAIk9FlRIiywwnQK7CQD0cz96zd59cXwqkkcTw0xMR1LCvAooYKvYDG3CCf/MwqHRpHR+nKlTQKZGwC4VP1Iw/MmInXBZQl1YA+cLrBR1buAJnbLVd5EHRM7xFdBKu3Sst/ZesHI958yTY7ftMkdy45k+nCZrHqp7TXcmbJJarJaCKOHlbddKZ3B8Kvnc0qc6lZOd1dJj+OoxAJYa0uvOH2eboqvj1AjX+ck/UJu2tURlU5a7At3gSiw+BKeh/doDNcQNgZ9T/qlbR0n8edl+MpCbHEfmitLEheseEVpD8/2yVPFUAawYHNgsQCZ5vAY5E1lsyGY9jPHCYnbq/0S+2rxHe9s2mJrXIsoQ7ATEPaKwBlqbUqU6WQh/9+CRy1hEYt3Nk21i19GUqTUBuQUW0YlhM4vObj/Q=
